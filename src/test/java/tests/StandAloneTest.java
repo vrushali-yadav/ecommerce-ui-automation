@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.time.Duration;
@@ -21,6 +22,7 @@ public class StandAloneTest {
         String validUsername = "standard_user";
         String validPassword = "secret_sauce";
         String productName = "Sauce Labs Bolt T-Shirt";
+
 
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
@@ -45,8 +47,23 @@ public class StandAloneTest {
         product.findElement(By.cssSelector("[data-test^='add-to-cart']")).click();
 
         driver.findElement(By.className("shopping_cart_link")).click();
-        //List<WebElement> cartItems = driver.findElements(By.className("cart_item"));
+        List<WebElement> cartItems = driver.findElements(By.cssSelector(".cart_item_label .inventory_item_name"));
+        boolean isPresent = cartItems.stream().anyMatch(item -> item.getText().equals(productName));
+        Assert.assertTrue(isPresent);
+        driver.findElement(By.id("checkout")).click();
 
+        driver.findElement(By.name("firstName")).sendKeys("Vrushali");
+        driver.findElement(By.name("lastName")).sendKeys("Yadav");
+        driver.findElement(By.name("postalCode")).sendKeys("L8T 3A6");
+        driver.findElement(By.id("continue")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish")));
+        driver.findElement(By.id("finish")).click();
+
+        String confirmMessage = driver.findElement(By.xpath("//*[@data-test='complete-header']")).getText();
+        Assert.assertTrue(confirmMessage.equalsIgnoreCase("Thank you for your order!"));
+
+        driver.close();
     }
 
 }
