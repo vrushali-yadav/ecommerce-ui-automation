@@ -8,13 +8,15 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class HomePage {
-
     WebDriver driver;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy(className = "shopping_cart_link")
+    WebElement shoppingCart;
 
     @FindBy(css = ".inventory_item")
     List<WebElement> productList;
@@ -32,6 +34,10 @@ public class HomePage {
     public void addProductToCart(String productName){
         WebElement product = getProductByName(productName);
         product.findElement(addToCartButton).click();
+    }
+
+    public void gotToCart(){
+        shoppingCart.click();
     }
 
 }
