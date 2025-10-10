@@ -19,11 +19,11 @@ public class HomePage {
     @FindBy(css = ".inventory_item")
     List<WebElement> productList;
 
-    By addToCartButton = By.xpath("//button[contains(@id,'add-to-cart')]");
+    By addToCartButton = By.cssSelector("[data-test^='add-to-cart']");
 
     public WebElement getProductByName(String productName){
         WebElement prod = productList.stream()
-                .filter(product -> product.findElement(By.className("inventory_item_name")).getText().equals(productName))
+                .filter(product -> product.findElement(By.cssSelector(".inventory_item_name")).getText().equals(productName))
                 .findFirst()
                 .orElse(null);
         return prod;
