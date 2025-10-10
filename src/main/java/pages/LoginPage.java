@@ -29,6 +29,7 @@ public class LoginPage {
     }
 
     public void loginToApplication(String uname, String pwd) {
+        launchPage();
         username.sendKeys(uname);
         password.sendKeys(pwd);
         loginButton.click();

@@ -1,19 +1,20 @@
 package tests;
 
 import core.BaseTest;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-public class LoginTest extends BaseTest {
+public class AddToCartTest extends BaseTest {
+
+    String product = "Sauce Labs Bolt T-Shirt";
 
     @Test
-    public void testLoginWithValidCredentials() throws InterruptedException {
+    public void testAddProductToCart(){
         String validUsername = "standard_user";
         String validPassword = "secret_sauce";
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginToApplication(validUsername,validPassword);
-        Thread.sleep(1000);
+
     }
 
 }
