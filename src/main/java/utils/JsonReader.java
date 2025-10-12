@@ -10,22 +10,31 @@ import java.io.IOException;
 
 public class JsonReader {
 
-    public String getTestData(String key) throws IOException, ParseException {
+    public static String getTestData(String key) {
         return (String)getJsonData().get(key);
     }
 
-    public JSONObject getJsonData() throws IOException, ParseException {
+    public static JSONObject getJsonData() {
 
-        // Pass testdata.json file
-        File file = new File("resources/testData/testdata.json");
+        JSONObject jsonObject = null;
 
-        // Convert json file to string
-        String jsonData = FileUtils.readFileToString(file, "UTF-8");
+        try{
+            // Pass testdata.json file
+            File file = new File("resources/testData/testdata.json");
 
-        // Pass string to object
-        Object obj = new JSONParser().parse(jsonData);
+            // Convert json file to string
+            String jsonData = FileUtils.readFileToString(file, "UTF-8");
 
-        // Give JSON object so that it can be returned to the function everytime it get called
-        return (JSONObject) obj;
+            // Pass string to object
+            Object obj = new JSONParser().parse(jsonData);
+
+            // give JSON object so that it can be returned to the function everytime it get called
+            jsonObject = (JSONObject) obj;
+
+        } catch(IOException|ParseException e){
+            e.printStackTrace();
+        }
+
+        return jsonObject;
     }
 }

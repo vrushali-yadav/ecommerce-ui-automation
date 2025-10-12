@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-    public String propertyReader(String filePath, String key) {
+    public static String propertyReader(String filePath, String key) {
 
         String value = null;
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.PropertyReader;
 
 public class LoginPage {
     WebDriver driver;
@@ -23,7 +24,8 @@ public class LoginPage {
     WebElement loginButton;
 
     public void launchPage(){
-        driver.get("https://www.saucedemo.com/");
+        String url = PropertyReader.propertyReader("config.properties","url");
+        driver.get(url);
         driver.manage().window().maximize();
     }
 
