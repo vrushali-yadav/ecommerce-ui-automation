@@ -1,4 +1,8 @@
 {
-  "validUsername": "standard_user",
-  "validPassword": "secret_sauce"
+  "username": "standard_user",
+  "password": "secret_sauce",
+  "product" : "Sauce Labs Bike Light",
+  "firstName": "Vrushali",
+  "lastName": "Yadav",
+  "postalCode": "L8T 3A6"
 }
