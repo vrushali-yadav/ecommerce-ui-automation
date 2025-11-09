@@ -9,35 +9,36 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckoutPage {
     WebDriver driver;
 
-    public CheckoutPage(WebDriver driver){
+    public CheckoutPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(name = "firstName")
     WebElement firstName;
 
     @FindBy(name = "lastName")
-            WebElement lastName;
+    WebElement lastName;
 
     @FindBy(name = "postalCode")
-            WebElement postalCode;
+    WebElement postalCode;
 
     @FindBy(id = "continue")
-            WebElement continueOrder;
+    WebElement continueOrder;
 
-    public void enterFirstName(String fname){
+    public void enterFirstName(String fname) {
         firstName.sendKeys(fname);
     }
-    public void enterLastName(String lname){
+
+    public void enterLastName(String lname) {
         lastName.sendKeys(lname);
     }
 
-    public void enterPostalCode(String code){
+    public void enterPostalCode(String code) {
         postalCode.sendKeys(code);
     }
 
-    public void goToOrderPage(){
+    public void goToOrderPage() {
         continueOrder.click();
     }
 
